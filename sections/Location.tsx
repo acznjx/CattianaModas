@@ -95,7 +95,7 @@ export const LocationAndFitting = () => {
             {/* Endereço e CTA */}
             <div className="w-full md:w-auto flex flex-col gap-6 items-start md:items-end">
               <p style={{ fontFamily: "'Barlow', sans-serif" }} className="text-zinc-500 text-xs md:text-sm uppercase tracking-widest font-bold md:text-right leading-relaxed">
-                Rua 28 de Fevereiro, 57 — Sala 03 <br />
+                Rua 28 de Fevereiro, 57 — Sala 01 <br />
                 Centro, Sapiranga - RS
               </p>
               <a 

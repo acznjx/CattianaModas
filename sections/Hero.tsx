@@ -10,7 +10,9 @@ export const Hero = () => {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black text-white">
       
-      {/* Background: Efeito de Zoom e Overlay de Gradiente */}
+      {/* ==========================================
+          BACKGROUND: IMAGEM COM ZOOM E OVERLAY
+          ========================================== */}
       <div className="absolute inset-0 z-0">
         <motion.div 
           initial={{ scale: 1.15, opacity: 0 }}
@@ -29,7 +31,9 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Conteúdo Central: A Arte de Vestir-se */}
+      {/* ==========================================
+          CONTEÚDO CENTRAL (TEXTO & CTA)
+          ========================================== */}
       <div className="relative z-10 w-full max-w-7xl px-6 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -37,6 +41,7 @@ export const Hero = () => {
           transition={{ duration: 1.2, delay: 0.5 }}
           className="w-full flex flex-col items-center"
         >
+          {/* Tag de Coleção */}
           <span 
             style={{ fontFamily: "'Barlow', sans-serif" }}
             className="text-[#af18a6] text-[10px] md:text-xs font-black uppercase tracking-[0.6em] mb-6 block"
@@ -44,22 +49,25 @@ export const Hero = () => {
             Coleção Exclusive 2026
           </span>
 
+          {/* Título Principal Atualizado */}
           <h1 
             style={{ fontFamily: "'Quicksand', sans-serif" }}
-            className="text-5xl sm:text-6xl md:text-[8vw] lg:text-[7vw] font-bold leading-[0.9] uppercase mb-8 tracking-tighter"
+            className="text-4xl sm:text-5xl md:text-[6vw] lg:text-[5.5vw] font-bold leading-[1.05] uppercase mb-8 tracking-tighter max-w-4xl"
           >
-            A Arte de <br />
-            <span className="italic font-light text-zinc-400">Vestir-se</span>
+            Do PP ao <br />
+            <span className="italic font-light text-zinc-400">Plus Size</span>
           </h1>
 
+          {/* Subtítulo Atualizado */}
           <p 
             style={{ fontFamily: "'Quicksand', sans-serif" }}
             className="max-w-[95%] md:max-w-2xl text-zinc-300 text-sm md:text-xl font-medium leading-relaxed mb-10 tracking-wide"
           >
-            Mais que moda, uma forma de expressão. <br className="hidden md:block" />
-            Descubra uma seleção exclusiva que une conforto premium e design refinado.
+            Porque beleza não tem padrão, <br className="hidden md:block" />
+            tem personalidade.
           </p>
 
+          {/* Botão de Ação */}
           <div style={{ fontFamily: "'Barlow', sans-serif" }} className="w-full md:w-auto">
             <motion.a 
               href={instagramUrl}
@@ -75,7 +83,10 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Detalhes Laterais (Desktop) */}
+      {/* ==========================================
+          DETALHES LATERAIS (DESKTOP)
+          ========================================== */}
+      {/* Rodapé Esquerdo: Linha Editorial */}
       <div 
         className="hidden md:flex absolute bottom-10 left-16 flex-col gap-2"
         style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -89,6 +100,7 @@ export const Hero = () => {
         </p>
       </div>
 
+      {/* Rodapé Direito: Localização oficial */}
       <div 
         className="hidden md:flex absolute bottom-10 right-16 text-right flex-col gap-2 items-end"
         style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -101,6 +113,7 @@ export const Hero = () => {
           Brasil
         </p>
       </div>
+
     </section>
   );
 };
