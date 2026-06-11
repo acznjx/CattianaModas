@@ -8,11 +8,8 @@ export const Hero = () => {
   const instagramUrl = "https://www.instagram.com/cattianamodas";
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black text-white">
+    <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-black text-white">
       
-      {/* ==========================================
-          BACKGROUND: IMAGEM COM ZOOM E OVERLAY
-          ========================================== */}
       <div className="absolute inset-0 z-0">
         <motion.div 
           initial={{ scale: 1.15, opacity: 0 }}
@@ -31,51 +28,44 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* ==========================================
-          CONTEÚDO CENTRAL (TEXTO & CTA)
-          ========================================== */}
-      <div className="relative z-10 w-full max-w-7xl px-6 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-7xl px-4 md:px-12 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5 }}
           className="w-full flex flex-col items-center"
         >
-          {/* Tag de Coleção */}
           <span 
             style={{ fontFamily: "'Barlow', sans-serif" }}
-            className="text-[#af18a6] text-[10px] md:text-xs font-black uppercase tracking-[0.6em] mb-6 block"
+            className="text-[#af18a6] text-[10px] md:text-xs font-black uppercase tracking-[0.4em] md:tracking-[0.6em] mb-4 md:mb-6 block"
           >
             Coleção Exclusive 2026
           </span>
 
-          {/* Título Principal Atualizado */}
           <h1 
             style={{ fontFamily: "'Quicksand', sans-serif" }}
-            className="text-4xl sm:text-5xl md:text-[6vw] lg:text-[5.5vw] font-bold leading-[1.05] uppercase mb-8 tracking-tighter max-w-4xl"
+            className="text-4xl sm:text-5xl md:text-[6vw] lg:text-[5.5vw] font-bold leading-[1.05] uppercase mb-6 md:mb-8 tracking-tighter max-w-4xl"
           >
             Do PP ao <br />
             <span className="italic font-light text-zinc-400">Plus Size</span>
           </h1>
 
-          {/* Subtítulo Atualizado */}
           <p 
             style={{ fontFamily: "'Quicksand', sans-serif" }}
-            className="max-w-[95%] md:max-w-2xl text-zinc-300 text-sm md:text-xl font-medium leading-relaxed mb-10 tracking-wide"
+            className="max-w-[95%] md:max-w-2xl text-zinc-300 text-sm md:text-xl font-medium leading-relaxed mb-8 md:mb-10 tracking-wide"
           >
             Porque beleza não tem padrão, <br className="hidden md:block" />
             tem personalidade.
           </p>
 
-          {/* Botão de Ação */}
-          <div style={{ fontFamily: "'Barlow', sans-serif" }} className="w-full md:w-auto">
+          <div style={{ fontFamily: "'Barlow', sans-serif" }} className="w-full sm:w-auto">
             <motion.a 
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, backgroundColor: rosaCattiana, color: "#fff" }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block w-full md:w-auto bg-white text-black px-12 md:px-16 py-5 md:py-6 rounded-full text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-500 shadow-2xl"
+              className="inline-flex items-center justify-center w-full sm:w-auto bg-white text-black px-10 md:px-16 py-4 md:py-6 rounded-full text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-500 shadow-2xl"
             >
               Explorar no Instagram
             </motion.a>
@@ -83,10 +73,6 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* ==========================================
-          DETALHES LATERAIS (DESKTOP)
-          ========================================== */}
-      {/* Rodapé Esquerdo: Linha Editorial */}
       <div 
         className="hidden md:flex absolute bottom-10 left-16 flex-col gap-2"
         style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -100,7 +86,6 @@ export const Hero = () => {
         </p>
       </div>
 
-      {/* Rodapé Direito: Localização oficial */}
       <div 
         className="hidden md:flex absolute bottom-10 right-16 text-right flex-col gap-2 items-end"
         style={{ fontFamily: "'Barlow', sans-serif" }}
