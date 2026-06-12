@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 
 export const Hero = () => {
   const rosaCattiana = "#af18a6";
-  const instagramUrl = "https://www.instagram.com/cattianamodas";
+  const instagramUrl = "https://www.instagram.com/cattiana.modas";
 
   return (
-    <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-black text-white">
+    <section className="relative min-h-dvh w-full flex items-center justify-center overflow-hidden bg-black text-white">
       
       <div className="absolute inset-0 z-0">
         <motion.div 
@@ -70,9 +71,24 @@ export const Hero = () => {
               Explorar no Instagram
             </motion.a>
           </div>
+
+          {/* Endereço Mobile: Único, Clean e com Estilo de Alta Costura */}
+          <div 
+            style={{ fontFamily: "'Barlow', sans-serif" }}
+            className="mt-8 flex md:hidden flex-col items-center justify-center gap-2 text-zinc-400 max-w-[290px] border-t border-zinc-800/60 pt-5"
+          >
+            <span className="text-[9px] text-[#af18a6] uppercase tracking-[0.4em] font-black flex items-center gap-1">
+              <MapPin size={10} /> Nossa Loja
+            </span>
+            <p className="text-[11px] text-zinc-300 uppercase tracking-[0.18em] font-medium leading-relaxed">
+              Rua 28 de Fevereiro, 57 • Sala 01 <br />
+              <span className="text-zinc-500 text-[10px]">Centro • Sapiranga, RS</span>
+            </p>
+          </div>
         </motion.div>
       </div>
 
+      {/* Rodapé Esquerdo Editorial (PC) */}
       <div 
         className="hidden md:flex absolute bottom-10 left-16 flex-col gap-2"
         style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -86,16 +102,18 @@ export const Hero = () => {
         </p>
       </div>
 
+      {/* Rodapé Direito Editorial (PC) */}
       <div 
-        className="hidden md:flex absolute bottom-10 right-16 text-right flex-col gap-2 items-end"
+        className="hidden md:flex absolute bottom-10 right-16 text-right flex-col gap-1.5 items-end max-w-sm"
         style={{ fontFamily: "'Barlow', sans-serif" }}
       >
         <div className="h-px w-8 bg-zinc-700 mb-2" />
-        <p className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-medium">
-          Sapiranga, RS
+        <p className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-black flex items-center gap-1.5">
+          <MapPin size={11} className="text-[#af18a6]" /> Nossa Loja
         </p>
-        <p className="text-[10px] text-zinc-600 uppercase tracking-[0.3em] font-medium">
-          Brasil
+        <p className="text-[11px] text-zinc-300 uppercase tracking-[0.15em] font-medium leading-relaxed">
+          Rua 28 de Fevereiro, 57 • Sala 01 <br />
+          Centro — Sapiranga, RS
         </p>
       </div>
 
