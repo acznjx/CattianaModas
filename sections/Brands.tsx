@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const brands = [
   "Ellan Moda Íntima", 
-  "Bruna e Bia Malhas", 
+  "Bruna & Bia Malhas", 
   "Vislumbre", 
   "Upman", 
   "Arazzo", 

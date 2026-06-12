@@ -1,20 +1,16 @@
 "use client";
 
-import { Ruler, Scissors, Shirt, MapPin } from "lucide-react";
+import { Ruler, Scissors, Shirt, MapPin, Clock } from "lucide-react";
 
 export const LocationAndFitting = () => {
   const googleMapsUrl = "https://www.google.com/maps?q=Rua+28+de+Fevereiro+57+Sapiranga"; 
-
-  // URL de incorporação configurada exatamente para o endereço da loja
   const iframeMapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8071661645396!2d-51.01188372403212!3d-29.63836151322047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951939efaf0a867b%3A0x6b9ff0185987f2b9!2sR.%2028%20de%20Fevereiro%2C%2057%20-%20Centro%2C%20Sapiranga%20-%20RS%2C%2093800-000!5e0!3m2!1spt-BR!2sbr!4v1717942400000!5e0";
 
   return (
     <>
-      {/* SEÇÃO: GUIA DE MEDIDAS */}
-      <section className="min-h-[100dvh] flex items-center py-12 md:py-24 bg-white text-zinc-900 overflow-hidden">
+      <section className="min-h-dvh flex items-center py-12 md:py-24 bg-white text-zinc-900 overflow-hidden">
         <div className="container mx-auto px-4 md:px-12 w-full">
           
-          {/* Cabeçalho da Seção */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start md:items-center mb-10 md:mb-16">
             <div className="md:col-span-8">
               <span 
@@ -41,9 +37,7 @@ export const LocationAndFitting = () => {
             </div>
           </div>
 
-          {/* Grid de Passos de Medição */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 lg:gap-12">
-            {/* Passo 01 - Busto */}
             <div className="relative group p-6 md:p-8 bg-zinc-50 rounded-2xl md:rounded-3xl hover:bg-white hover:shadow-2xl hover:shadow-[#af18a6]/10 transition-all duration-500 border border-zinc-100/50">
               <span className="absolute top-4 right-6 md:right-8 text-4xl md:text-5xl font-black text-zinc-200/60 group-hover:text-[#af18a6]/10 transition-colors pointer-events-none">01</span>
               <Ruler className="text-[#af18a6] mb-4 md:mb-6" size={32} strokeWidth={1.5} />
@@ -53,7 +47,6 @@ export const LocationAndFitting = () => {
               </p>
             </div>
 
-            {/* Passo 02 - Cintura */}
             <div className="relative group p-6 md:p-8 bg-zinc-50 rounded-2xl md:rounded-3xl hover:bg-white hover:shadow-2xl hover:shadow-[#af18a6]/10 transition-all duration-500 border border-zinc-100/50">
               <span className="absolute top-4 right-6 md:right-8 text-4xl md:text-5xl font-black text-zinc-200/60 group-hover:text-[#af18a6]/10 transition-colors pointer-events-none">02</span>
               <Scissors className="text-[#af18a6] mb-4 md:mb-6" size={32} strokeWidth={1.5} />
@@ -63,7 +56,6 @@ export const LocationAndFitting = () => {
               </p>
             </div>
 
-            {/* Passo 03 - Quadril */}
             <div className="relative group p-6 md:p-8 bg-zinc-50 rounded-2xl md:rounded-3xl hover:bg-white hover:shadow-2xl hover:shadow-[#af18a6]/10 transition-all duration-500 border border-zinc-100/50">
               <span className="absolute top-4 right-6 md:right-8 text-4xl md:text-5xl font-black text-zinc-200/60 group-hover:text-[#af18a6]/10 transition-colors pointer-events-none">03</span>
               <Shirt className="text-[#af18a6] mb-4 md:mb-6" size={32} strokeWidth={1.5} />
@@ -76,12 +68,10 @@ export const LocationAndFitting = () => {
         </div>
       </section>
 
-      {/* SEÇÃO: LOCALIZAÇÃO */}
-      <section id="localizacao" className="min-h-[100dvh] flex items-center py-12 md:py-24 bg-zinc-100">
+      <section id="localizacao" className="min-h-dvh flex items-center py-12 md:py-24 bg-zinc-100">
         <div className="container mx-auto px-4 md:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* COLUNA 1: INFORMAÇÕES */}
             <div className="lg:col-span-7 flex flex-col justify-center order-1">
               <div className="flex items-center gap-2 mb-3 md:mb-4">
                 <MapPin size={16} className="text-[#af18a6]" />
@@ -95,10 +85,9 @@ export const LocationAndFitting = () => {
                 <span className="text-[#af18a6] italic font-light block">Sapiranga</span>
               </h3>
 
-              {/* Bloco de Informações */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 md:mb-8 border-t border-zinc-200 pt-6 md:pt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 border-t border-zinc-200 pt-6 md:pt-8">
                 <div>
-                  <h5 style={{ fontFamily: "'Barlow', sans-serif" }} className="text-xs uppercase tracking-wider font-black text-zinc-400 mb-1 md:mb-2">Endereço</h5>
+                  <h5 style={{ fontFamily: "'Barlow', sans-serif" }} className="text-xs uppercase tracking-wider font-black text-zinc-400 mb-2">Endereço</h5>
                   <p style={{ fontFamily: "'Quicksand', sans-serif" }} className="text-zinc-600 text-sm md:text-base leading-relaxed">
                     Rua 28 de Fevereiro, 57 <br />
                     Sala 01 — Centro <br />
@@ -106,16 +95,28 @@ export const LocationAndFitting = () => {
                   </p>
                 </div>
                 
-                <div>
-                  <h5 style={{ fontFamily: "'Barlow', sans-serif" }} className="text-xs uppercase tracking-wider font-black text-zinc-400 mb-1 md:mb-2">Atendimento</h5>
-                  <p style={{ fontFamily: "'Quicksand', sans-serif" }} className="text-zinc-600 text-sm md:text-base leading-relaxed">
-                    Segunda a Sexta: 9h às 18h <br />
-                    Sábados: 9h às 13h
-                  </p>
+                <div className="flex flex-col gap-3">
+                  <h5 style={{ fontFamily: "'Barlow', sans-serif" }} className="text-xs uppercase tracking-wider font-black text-zinc-400 flex items-center gap-1.5">
+                    <Clock size={12} className="text-[#af18a6]" /> Atendimento
+                  </h5>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif" }} className="space-y-3 text-zinc-700 text-sm md:text-base">
+                    <div className="flex flex-col border-b border-zinc-200/50 pb-2">
+                      <div className="flex justify-between items-baseline">
+                        <span className="font-bold text-zinc-800">Segunda a Sexta</span>
+                        <span className="text-[#af18a6] font-semibold text-xs sm:text-sm">9h às 18h30</span>
+                      </div>
+                      <span className="text-[10px] md:text-xs text-zinc-400 font-medium mt-0.5">
+                          Sem fechar ao meio-dia
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-baseline pt-0.5">
+                      <span className="font-bold text-zinc-800">Sábados</span>
+                      <span className="text-[#af18a6] font-semibold text-xs sm:text-sm">9h às 16h</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Botão de Ação */}
               <div className="w-full sm:w-auto">
                 <a 
                   href={googleMapsUrl}
@@ -130,7 +131,6 @@ export const LocationAndFitting = () => {
               </div>
             </div>
 
-            {/* COLUNA 2: MAPA QUADRADO RESPONSIVO */}
             <div className="lg:col-span-5 w-full order-2">
               <div className="relative w-full aspect-video sm:aspect-square lg:aspect-square max-w-[450px] lg:max-w-none mx-auto rounded-2xl md:rounded-3xl overflow-hidden border-4 md:border-8 border-white shadow-xl">
                 <iframe 
