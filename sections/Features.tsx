@@ -1,107 +1,190 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 
-const features = [
-  { 
-    title: "PP ao Plus Size", 
+const WHATSAPP_URL = "https://wa.me/5551999166262";
+const PRIMARY = "#af18a6";
+const SECTION_BG = "#f7f4f7";
+
+const FONT_DISPLAY = "var(--font-quicksand), sans-serif";
+const FONT_UI = "var(--font-barlow), sans-serif";
+
+type Feature = {
+  title: string;
+  desc: string;
+  /** Etiqueta em destaque (rosa) */
+  featured?: boolean;
+  /** Comprimento do fio no desktop — alturas diferentes deixam o varal orgânico */
+  stringPx: number;
+  /** Inclinação de repouso da etiqueta, em graus */
+  tilt: number;
+  cta?: { label: string; href: string };
+};
+
+const features: Feature[] = [
+  {
+    title: "PP ao Plus Size",
     desc: "Curadoria inclusiva que valoriza as curvas e a maturidade feminina com elegância.",
-    bg: "#fdf4ff" 
+    featured: true,
+    stringPx: 36,
+    tilt: -2.5,
   },
-  { 
-    title: "Envio Nacional", 
+  {
+    title: "Envio Nacional",
     desc: "Enviamos para todo o Brasil com logística segura e cuidado em cada detalhe.",
-    bg: "#fcfcfc" 
+    stringPx: 84,
+    tilt: 1.5,
   },
-  { 
-    title: "Atendimento VIP", 
+  {
+    title: "Atendimento VIP",
     desc: "Consultoria personalizada via WhatsApp para encontrar o caimento perfeito para você.",
-    bg: "#f7f7f7" 
-  }
+    stringPx: 52,
+    tilt: -1,
+    cta: { label: "Falar no WhatsApp", href: WHATSAPP_URL },
+  },
 ];
 
-export const Features = () => {
-  const rosaCattiana = "#af18a6";
+/** Recorte clássico de etiqueta: cantos superiores chanfrados. */
+const TAG_SHAPE =
+  "polygon(26px 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%, 0 26px)";
+
+const HangTag = ({ feature, index }: { feature: Feature; index: number }) => {
+  const { title, desc, featured, stringPx, tilt, cta } = feature;
 
   return (
-    <section 
-      id="sobre" 
-      className="min-h-[100dvh] flex items-center py-12 md:py-24 bg-[#fafafa] text-zinc-900 border-y border-zinc-100 overflow-hidden"
+    <motion.li
+      className="relative list-none [--string:28px] md:mt-(--string) md:[--string:var(--string-md)]"
+      style={{ ["--string-md" as string]: `${stringPx}px`, transformOrigin: "50% calc(-1 * var(--string))" }}
+      // Único momento de movimento da seção: as etiquetas "balançam" ao entrar na tela
+      initial={{ opacity: 0, rotate: tilt - 9 }}
+      whileInView={{ opacity: 1, rotate: tilt }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{
+        opacity: { duration: 0.4, delay: index * 0.12 },
+        rotate: { type: "spring", stiffness: 60, damping: 7, delay: index * 0.12 },
+      }}
+      whileHover={{ rotate: 0, transition: { type: "spring", stiffness: 120, damping: 10 } }}
     >
-      <div className="container mx-auto px-4 md:px-12 w-full">
-        
-        {/* Cabeçalho */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-4 md:gap-8">
-          <div>
-            <span 
-              style={{ fontFamily: "'Barlow', sans-serif" }}
-              className="text-[#af18a6] text-[10px] md:text-[11px] tracking-[0.3em] md:tracking-[0.5em] uppercase font-black mb-2 md:mb-4 block"
+      {/* Nó do fio (no mobile é o ponto de fixação; no desktop fica sobre o varal) */}
+      <span
+        aria-hidden="true"
+        className="absolute left-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-400"
+        style={{ top: "calc(-1 * var(--string))" }}
+      />
+      {/* Fio que sobe até o varal */}
+      <span
+        aria-hidden="true"
+        className="absolute left-1/2 w-px -translate-x-1/2 bg-zinc-400/70"
+        style={{ top: "calc(-1 * var(--string))", height: "calc(var(--string) + 30px)" }}
+      />
+
+      {/* drop-shadow no wrapper: funciona mesmo com o clip-path do filho */}
+      <div className="drop-shadow-[0_14px_24px_rgba(60,20,58,0.12)]">
+        <article
+          className={`relative px-7 pt-14 pb-8 sm:px-9 md:min-h-[340px] lg:px-10 ${
+            featured ? "text-white" : "bg-white text-zinc-900"
+          }`}
+          style={{ clipPath: TAG_SHAPE, backgroundColor: featured ? PRIMARY : undefined }}
+        >
+          {/* Ilhós da etiqueta */}
+          <span
+            aria-hidden="true"
+            className={`absolute left-1/2 top-[22px] h-4 w-4 -translate-x-1/2 rounded-full ring-1 ${
+              featured ? "ring-white/50" : "ring-zinc-300"
+            }`}
+            style={{ backgroundColor: SECTION_BG }}
+          />
+
+          <h3
+            className="text-center text-lg font-bold uppercase tracking-[0.18em] md:text-xl"
+            style={{ fontFamily: FONT_UI }}
+          >
+            {title}
+          </h3>
+
+          {/* Linha de costura */}
+          <div
+            aria-hidden="true"
+            className={`mx-auto my-6 w-full border-t border-dashed ${
+              featured ? "border-white/45" : "border-zinc-300"
+            }`}
+          />
+
+          <p
+            className={`mx-auto max-w-[32ch] text-center text-[15px] font-medium leading-7 md:text-base ${
+              featured ? "text-white/90" : "text-zinc-600"
+            }`}
+            style={{ fontFamily: FONT_DISPLAY }}
+          >
+            {desc}
+          </p>
+
+          {cta && (
+            <div className="mt-6 text-center">
+              <a
+                href={cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center text-sm font-bold underline decoration-[#af18a6]/40 decoration-2 underline-offset-[6px] transition-colors hover:decoration-[#af18a6] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#af18a6]"
+                style={{ fontFamily: FONT_UI, color: PRIMARY }}
+              >
+                {cta.label}
+              </a>
+            </div>
+          )}
+        </article>
+      </div>
+    </motion.li>
+  );
+};
+
+export const Features = () => {
+  return (
+    <MotionConfig reducedMotion="user">
+      <section
+        id="sobre"
+        aria-labelledby="pilares-titulo"
+        className="overflow-hidden py-20 text-zinc-900 md:py-28"
+        style={{ backgroundColor: SECTION_BG }}
+      >
+        <div className="mx-auto w-full max-w-6xl px-5 md:px-12">
+          {/* Cabeçalho */}
+          <header className="max-w-xl">
+            <span
+              className="mb-3 block text-[11px] font-bold uppercase tracking-[0.35em] md:mb-4"
+              style={{ fontFamily: FONT_UI, color: PRIMARY }}
             >
               Nossos Pilares
             </span>
-            <h2 
-              style={{ fontFamily: "'Quicksand', sans-serif" }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.95] md:leading-[0.9] tracking-tighter text-[#1a1a1a]"
+            <h2
+              id="pilares-titulo"
+              className="text-[2.6rem] font-bold uppercase leading-[0.95] tracking-tighter text-zinc-900 md:text-6xl lg:text-7xl"
+              style={{ fontFamily: FONT_DISPLAY }}
             >
-              Excelência <br /> 
-              <span className="italic text-[#af18a6] font-light">nos detalhes</span>
+              Excelência <br />
+              <span className="font-light italic" style={{ color: PRIMARY }}>
+                nos detalhes
+              </span>
             </h2>
-          </div>
-          
-          <div className="hidden md:block text-right">
-            <span 
-              style={{ fontFamily: "'Barlow', sans-serif" }}
-              className="text-zinc-400 text-[10px] tracking-[0.5em] uppercase font-bold block mb-2"
-            >
-              Cattiana Modas
-            </span>
-            <div className="h-[2px] w-12 bg-[#af18a6] ml-auto" />
+          </header>
+
+          {/* Varal + etiquetas */}
+          <div className="relative mt-16 md:mt-20">
+            {/* Varal (desktop): cordão horizontal com as pontas presas */}
+            <div aria-hidden="true" className="absolute inset-x-0 top-0 hidden md:block">
+              <div className="h-px w-full bg-zinc-400/70" />
+              <span className="absolute -left-1 -top-[3px] h-[7px] w-[7px] rounded-full bg-zinc-400" />
+              <span className="absolute -right-1 -top-[3px] h-[7px] w-[7px] rounded-full bg-zinc-400" />
+            </div>
+
+            <ul className="grid grid-cols-1 gap-14 pt-8 sm:mx-auto sm:max-w-md md:max-w-none md:grid-cols-3 md:items-start md:gap-6 md:pt-0 lg:gap-10">
+              {features.map((feature, i) => (
+                <HangTag key={feature.title} feature={feature} index={i} />
+              ))}
+            </ul>
           </div>
         </div>
-
-        {/* Grid de Diferenciais - Mobile First real */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 bg-transparent md:bg-white rounded-2xl md:rounded-[3rem] md:overflow-hidden md:border md:border-zinc-200 md:shadow-2xl md:shadow-zinc-200/50">
-          {features.map((f, i) => (
-            <motion.div 
-              key={i} 
-              style={{ backgroundColor: f.bg }}
-              className="p-8 md:p-12 lg:p-16 flex flex-col justify-between min-h-[280px] md:min-h-[380px] lg:min-h-[420px] transition-all duration-700 group relative rounded-2xl md:rounded-none border border-zinc-200/60 md:border-0 md:border-r md:border-zinc-100 last:border-r-0 shadow-sm md:shadow-none"
-            >
-              <div className="space-y-4 md:space-y-6">
-                <span 
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
-                  className="text-[#af18a6] text-4xl md:text-5xl lg:text-6xl font-light opacity-20 md:opacity-10 group-hover:opacity-100 md:group-hover:translate-x-2 transition-all duration-700 block"
-                >
-                  0{i + 1}
-                </span>
-                <h4 
-                  style={{ fontFamily: "'Barlow', sans-serif" }}
-                  className="text-base md:text-lg uppercase tracking-[0.2em] md:tracking-[0.3em] font-black text-zinc-800"
-                >
-                  {f.title}
-                </h4>
-              </div>
-
-              <div className="space-y-6 md:space-y-8 mt-6 md:mt-0">
-                <p 
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
-                  className="text-zinc-600 text-sm md:text-base lg:text-lg font-medium leading-relaxed max-w-[290px]"
-                >
-                  {f.desc}
-                </p>
-                
-                {/* Linha animada de progresso */}
-                <div className="relative h-[2px] w-full bg-zinc-200/80 overflow-hidden">
-                  <div 
-                    className="absolute top-0 left-0 h-full w-0 group-hover:w-full transition-all duration-1000 ease-in-out" 
-                    style={{ backgroundColor: rosaCattiana }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </MotionConfig>
   );
 };

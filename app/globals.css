@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Faixa de marcas (sections/Brands.tsx) — "inline" para a duração ler
+   a variável --marquee-duration do próprio elemento */
+@theme inline {
+  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
